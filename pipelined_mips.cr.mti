@@ -89,13 +89,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	Register_file
 
-} {} {}} {E:/Courses/Digital/Pipelined MIPS/new MIPS/Hazard_Unitv.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/new MIPS/Hazard_Unitv.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Hazard_Unit
-
-Top level modules:
-	Hazard_Unit
-
 } {} {}} {E:/Courses/Digital/Pipelined MIPS/new MIPS/ProgramCounter.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/new MIPS/ProgramCounter.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module ProgramCounter

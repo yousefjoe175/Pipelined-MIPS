@@ -24,10 +24,13 @@ module Hazard_Unit (
     input   wire    [4:0]   WriteRegE,
     input   wire            BranchD,
 
-    output  reg     [1:0]   ForwardAD,
-    output  reg     [1:0]   ForwardBD
+    output  reg             ForwardAD,
+    output  reg             ForwardBD,
 
-    
+    input   wire            RegDstD,
+
+    output  reg             ForwardAWD,
+    output  reg             ForwardBWD
     
 
 );
@@ -84,6 +87,29 @@ module Hazard_Unit (
         else
             BranchStall = 1'b0;
     end
+
+    always @(*) begin
+        if((RsD == WriteRegW) && RegWriteW)
+            begin
+                ForwardAWD = 1'b1;
+            end
+        else
+            begin
+                ForwardAWD = 1'b0;
+            end
+    end
+
+    always @(*) begin
+        if((RtD == WriteRegW) && RegWriteW && RegDstD)
+            begin
+                ForwardBWD = 1'b1;
+            end
+        else
+            begin
+                ForwardBWD = 1'b0;
+            end
+    end
+
 
     always @(*) begin
         if(BranchStall || lwStall)

@@ -81,9 +81,13 @@ wire    [4:0]   RsD;
 wire    [4:0]   RtD;
 wire    [4:0]   RdD;
 //fetched from register file
+wire    [31:0]  RD1;
+wire    [31:0]  RD2;
+wire    [15:0]  ImmD;
+//fetched from forwarding mux of Write Back 
 wire    [31:0]  RD1D;
 wire    [31:0]  RD2D;
-wire    [15:0]  ImmD;
+
 //fetched from sign extenstion
 wire    [31:0]  SignImmD;
 //fetched from forwarding muxes
@@ -151,8 +155,10 @@ wire    [31:0]  ResultW;
 /**********************************************************************/
 wire    [1:0]   ForwardAE;
 wire    [1:0]   ForwardBE;
-wire    [1:0]   ForwardAD;
-wire    [1:0]   ForwardBD;
+wire            ForwardAD;  //used for OP1 -> Beq
+wire            ForwardBD;  
+wire            ForwardAWD; //used for RD1D
+wire            ForwardBWD;            
 
 wire            FlushE;
 wire            StallD;
@@ -229,8 +235,8 @@ Adder ADDBranch
 
 Register_file RF0 
 (
-.RD1(RD1D),
-.RD2(RD2D),
+.RD1(RD1),
+.RD2(RD2),
 .WE3(RegWriteW),
 .A1(RsD),
 .A2(RtD),
@@ -256,6 +262,25 @@ MUX #(.WIDTH(32)) OP2_mux
 .sel(ForwardBD),    //ForwardBD will be declared in the hazard unit        
 .Out(OP2D)      
 );
+
+MUX #(.WIDTH(32)) RD1D_mux
+(
+.In1(RD1),
+.In2(ResultW),      
+.sel(ForwardAWD),   
+.Out(RD1D)
+);
+
+MUX #(.WIDTH(32)) RD2D_mux
+(
+.In1(RD2),
+.In2(ResultW),      
+.sel(ForwardBWD),   
+.Out(RD2D)
+);
+
+
+
 
 CMP #(.WIDTH(32)) Branch_EQ
 (
@@ -440,7 +465,10 @@ Hazard_Unit H0
 .WriteRegE(WriteRegE),
 .BranchD(BranchD),
 .ForwardAD(ForwardAD),
-.ForwardBD(ForwardBD)
+.ForwardBD(ForwardBD),
+.RegDstD(RegDstD),
+.ForwardAWD(ForwardAWD),
+.ForwardBWD(ForwardBWD)
 );
 
 
