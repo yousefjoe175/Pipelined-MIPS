@@ -1,0 +1,122 @@
+# vsim work.MIPS 
+# Start time: 21:12:33 on Aug 15,2022
+# Loading work.MIPS
+# Loading work.ControlUnit
+# Loading work.DatapathUnit
+# Loading work.ProgramCounter
+# Loading work.Adder
+# Loading work.MUX
+# Loading work.IF_ID_reg
+# Loading work.SignExtend
+# Loading work.Register_file
+# Loading work.CMP
+# Loading work.ID_EX_reg
+# Loading work.MUX3_1
+# Loading work.ALU
+# Loading work.EX_MEM_reg
+# Loading work.MEM_WB_reg
+# Loading work.Hazard_Unit
+# Loading work.data_memory
+# Loading work.Ins_memory
+# ** Warning: (vsim-3015) DatapathUnit.v(230): [PCDPC] - Port size (5) does not match connection size (6) for port 'A3'. The port definition is at: Register_file.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS/D1/RF0 File: Register_file.v
+# ** Warning: (vsim-3015) DatapathUnit.v(244): [PCDPC] - Port size (1) does not match connection size (2) for port 'sel'. The port definition is at: MUX.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS/D1/OP1_mux File: MUX.v
+# ** Warning: (vsim-3015) DatapathUnit.v(252): [PCDPC] - Port size (1) does not match connection size (2) for port 'sel'. The port definition is at: MUX.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS/D1/OP2_mux File: MUX.v
+# ** Warning: (vsim-3015) DatapathUnit.v(277): [PCDPC] - Port size (5) does not match connection size (6) for port 'RsE'. The port definition is at: ID_EX_reg.v(25).
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS/D1/D_E_reg_mod File: ID_EX_reg.v
+# ** Warning: (vsim-3015) DatapathUnit.v(277): [PCDPC] - Port size (5) does not match connection size (6) for port 'RtE'. The port definition is at: ID_EX_reg.v(26).
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS/D1/D_E_reg_mod File: ID_EX_reg.v
+# ** Warning: (vsim-3015) DatapathUnit.v(277): [PCDPC] - Port size (5) does not match connection size (6) for port 'RdE'. The port definition is at: ID_EX_reg.v(27).
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS/D1/D_E_reg_mod File: ID_EX_reg.v
+# ** Warning: (vsim-3015) DatapathUnit.v(309): [PCDPC] - Port size (5) does not match connection size (6) for port 'In1'. The port definition is at: MUX.v(4).
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS/D1/RegDst_mux File: MUX.v
+# ** Warning: (vsim-3015) DatapathUnit.v(309): [PCDPC] - Port size (5) does not match connection size (6) for port 'In2'. The port definition is at: MUX.v(5).
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS/D1/RegDst_mux File: MUX.v
+# ** Warning: (vsim-3015) DatapathUnit.v(346): [PCDPC] - Port size (32) does not match connection size (1) for port 'SrcB'. The port definition is at: ALU.v(4).
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS/D1/ALU_mod File: ALU.v
+# ** Warning: (vsim-3015) DatapathUnit.v(390): [PCDPC] - Port size (5) does not match connection size (6) for port 'WriteRegW'. The port definition is at: MEM_WB_reg.v(14).
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS/D1/M_W_reg_mod File: MEM_WB_reg.v
+# ** Warning: (vsim-3015) DatapathUnit.v(421): [PCDPC] - Port size (5) does not match connection size (6) for port 'RsE'. The port definition is at: Hazard_Unitv.v(2).
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS/D1/H0 File: Hazard_Unitv.v
+# ** Warning: (vsim-3015) DatapathUnit.v(421): [PCDPC] - Port size (5) does not match connection size (6) for port 'RtE'. The port definition is at: Hazard_Unitv.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS/D1/H0 File: Hazard_Unitv.v
+# ** Warning: (vsim-3015) DatapathUnit.v(421): [PCDPC] - Port size (5) does not match connection size (6) for port 'WriteRegW'. The port definition is at: Hazard_Unitv.v(6).
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS/D1/H0 File: Hazard_Unitv.v
+add wave -position insertpoint  \
+sim:/MIPS/CLK \
+sim:/MIPS/RST \
+sim:/MIPS/test_value \
+sim:/MIPS/Instr \
+sim:/MIPS/ReadData \
+sim:/MIPS/RegWrite \
+sim:/MIPS/MemtoReg \
+sim:/MIPS/MemWrite \
+sim:/MIPS/ALUControl \
+sim:/MIPS/ALUSrc \
+sim:/MIPS/RegDst \
+sim:/MIPS/Branch \
+sim:/MIPS/Jump \
+sim:/MIPS/PC \
+sim:/MIPS/ALUOut \
+sim:/MIPS/WriteData \
+sim:/MIPS/MemWriteM
+add wave -position insertpoint  \
+sim:/MIPS/M1/data_mem
+add wave -position insertpoint  \
+sim:/MIPS/D1/PCF \
+sim:/MIPS/D1/PCPlus4F \
+sim:/MIPS/D1/PCin
+add dataflow  \
+sim:/MIPS/D1/PCSrcD \
+sim:/MIPS/D1/PCPlus4D
+# WARNING: No extended dataflow license exists
+# No drivers or ports for PCSrcD
+add wave -position insertpoint  \
+sim:/MIPS/D1/PCSrcD \
+sim:/MIPS/D1/PCPlus4D
+force -freeze sim:/MIPS/RST 0 0
+force -freeze sim:/MIPS/CLK 1 0, 0 {50 ps} -r 100
+run
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+force -freeze sim:/MIPS/RST St1 0
+run
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+run
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+run
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+run
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+run
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+run
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+run
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+run
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+run
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+run
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+add wave -position insertpoint  \
+sim:/MIPS/D1/InstrD
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# End time: 21:24:09 on Aug 15,2022, Elapsed time: 0:11:36
+# Errors: 26, Warnings: 15
