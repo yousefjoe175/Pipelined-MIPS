@@ -69,6 +69,8 @@ wire    [31:0]  PCF;            //the address that is sent to Ins memory
 wire    [31:0]  PCPlus4F;       //the next addres connected to ADD4
 wire    [31:0]  PCin;           //the input to the Program Counter
                                 //after muxing between next ins or branch
+wire    [31:0]  PCJin;          //the out of PCin and PCJumpD mux
+
 
 
 /**********************************************************************/
@@ -97,8 +99,10 @@ wire    [31:0]  OP2D;
 wire            EqualD;
 
 wire            PCSrcD;
+wire            PCSrcDin;
 wire    [31:0]  PCBranchD;      // the branched address that will be muxed
                                 // next address
+wire    [31:0]  PCJumpD;
 //fetched from IF_ID register
 wire    [31:0]  PCPlus4D;
 
@@ -171,13 +175,12 @@ wire            StallF;
 /**********************************************************************/
 
 assign  PC  =   PCF;
-
 ProgramCounter PC_reg
 (
 .CLK(CLK),
 .reset(RST),
 .Enable(StallF),
-.PC_in(PCin),
+.PC_in(PCJin),
 .PC(PCF)   
 );
 
@@ -195,6 +198,15 @@ MUX #(.WIDTH(32)) Branch_mux
 .sel(PCSrcD),       //PCSrcD will be declared in Decoder stage
 .Out(PCin)    
 );
+
+MUX #(.WIDTH(32)) Jump_mux
+(
+.In1(PCin),
+.In2(PCJumpD),    //PCBranchD will be declared in Decoder stage
+.sel(JumpD),       //PCSrcD will be declared in Decoder stage
+.Out(PCJin)    
+);
+
 /**********************************************************************/
 /*
 /*                  DECODE STAGE Blocks                     
@@ -219,6 +231,8 @@ assign  RsD     =   InstrD[25:21];
 assign  RtD     =   InstrD[20:16];
 assign  RdD     =   InstrD[15:11];
 assign  ImmD    =   InstrD[15:0];
+
+assign  PCJumpD = {PCPlus4F[31:28],InstrD[25:0],2'b00};
 
 SignExtend Sign0 (
     .Inst(ImmD),
@@ -289,8 +303,8 @@ CMP #(.WIDTH(32)) Branch_EQ
 .cmp(EqualD)
 );
 
-assign PCSrcD = EqualD & BranchD;
-
+assign PCSrcDin = EqualD & BranchD;
+assign PCSrcD   = PCSrcDin | JumpD;
 
 /**********************************************************************/
 /*
