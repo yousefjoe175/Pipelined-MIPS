@@ -33,6 +33,13 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	IF_ID_reg
 
+} {} {}} {E:/Courses/Digital/Pipelined MIPS/new MIPS/ControlUnit.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/new MIPS/ControlUnit.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module ControlUnit
+
+Top level modules:
+	ControlUnit
+
 } {} {}} {E:/Courses/Digital/Pipelined MIPS/new MIPS/MIPS.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/new MIPS/MIPS.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module MIPS
@@ -81,13 +88,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 
 Top level modules:
 	Register_file
-
-} {} {}} {E:/Courses/Digital/Pipelined MIPS/new MIPS/DatapathUnit.v} {1 {vlog -work work -stats=none {E:\Courses\Digital\Pipelined MIPS\new MIPS\DatapathUnit.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module DatapathUnit
-
-Top level modules:
-	DatapathUnit
 
 } {} {}} {E:/Courses/Digital/Pipelined MIPS/new MIPS/Hazard_Unitv.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/new MIPS/Hazard_Unitv.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016

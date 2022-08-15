@@ -36,87 +36,105 @@ module ControlUnit
     assign  OpCode  =   Instruction [31 : 26];
     assign  Funct   =   Instruction [5 : 0];
 
+
+    //adding logic to check instr = 0 
+
+
     always @(*) 
         begin
-            case (OpCode)
-                rType :
-                    begin
-                        Jump        =   1'b0; 
-                        ALUOp       =   2'b10;
-                        MemWrite    =   1'b0;
-                        RegWrite    =   1'b1;
-                        RegDst      =   1'b1;
-                        ALUSrc      =   1'b0;
-                        MemtoReg    =   1'b0;
-                        Branch      =   1'b0;
-                    end
-                loadWord :
-                    begin
-                        Jump         =   1'b0; 
-                        ALUOp       =   2'b00;
-                        MemWrite    =   1'b0;
-                        RegWrite    =   1'b1;
-                        RegDst      =   1'b0;
-                        ALUSrc      =   1'b1;
-                        MemtoReg    =   1'b1;
-                        Branch      =   1'b0;
-                    end
-                storeWord :
-                    begin
-                        Jump         =   1'b0; 
-                        ALUOp       =   2'b00;
-                        MemWrite    =   1'b1;
-                        RegWrite    =   1'b0;
-                        RegDst      =   1'b0;
-                        ALUSrc      =   1'b1;
-                        MemtoReg    =   1'b0;
-                        Branch      =   1'b0;
-                    end
-                addImmediate :
-                    begin
-                        Jump         =   1'b0; 
-                        ALUOp       =   2'b00;
-                        MemWrite    =   1'b0;
-                        RegWrite    =   1'b1;
-                        RegDst      =   1'b0;
-                        ALUSrc      =   1'b1;
-                        MemtoReg    =   1'b0;
-                        Branch      =   1'b0;
-                    end
-                branchIfEqual :
-                    begin
-                        Jump         =   1'b0; 
-                        ALUOp       =   2'b01;
-                        MemWrite    =   1'b0;
-                        RegWrite    =   1'b0;
-                        RegDst      =   1'b0;
-                        ALUSrc      =   1'b0;
-                        MemtoReg    =   1'b0;
-                        Branch      =   1'b1;
-                    end
-                jump_inst :
-                    begin
-                        Jump         =   1'b1; 
-                        ALUOp       =   2'b00;
-                        MemWrite    =   1'b0;
-                        RegWrite    =   1'b0;
-                        RegDst      =   1'b0;
-                        ALUSrc      =   1'b0;
-                        MemtoReg    =   1'b0;
-                        Branch      =   1'b0;
-                    end
-                default : 
-                    begin
-                        Jump         =   1'b0; 
-                        ALUOp       =   2'b00;
-                        MemWrite    =   1'b0;
-                        RegWrite    =   1'b0;
-                        RegDst      =   1'b0;
-                        ALUSrc      =   1'b0;
-                        MemtoReg    =   1'b0;
-                        Branch      =   1'b0;
-                    end  
-            endcase
+            if(Instruction == 0)
+                begin
+                    Jump        =   1'b0; 
+                    ALUOp       =   2'b00;
+                    MemWrite    =   1'b0;
+                    RegWrite    =   1'b0;
+                    RegDst      =   1'b0;
+                    ALUSrc      =   1'b0;
+                    MemtoReg    =   1'b0;
+                    Branch      =   1'b0;
+                end
+            else begin
+                case (OpCode)
+                    rType :
+                        begin
+                            Jump        =   1'b0; 
+                            ALUOp       =   2'b10;
+                            MemWrite    =   1'b0;
+                            RegWrite    =   1'b1;
+                            RegDst      =   1'b1;
+                            ALUSrc      =   1'b0;
+                            MemtoReg    =   1'b0;
+                            Branch      =   1'b0;
+                        end
+                    loadWord :
+                        begin
+                            Jump         =   1'b0; 
+                            ALUOp       =   2'b00;
+                            MemWrite    =   1'b0;
+                            RegWrite    =   1'b1;
+                            RegDst      =   1'b0;
+                            ALUSrc      =   1'b1;
+                            MemtoReg    =   1'b1;
+                            Branch      =   1'b0;
+                        end
+                    storeWord :
+                        begin
+                            Jump         =   1'b0; 
+                            ALUOp       =   2'b00;
+                            MemWrite    =   1'b1;
+                            RegWrite    =   1'b0;
+                            RegDst      =   1'b0;
+                            ALUSrc      =   1'b1;
+                            MemtoReg    =   1'b0;
+                            Branch      =   1'b0;
+                        end
+                    addImmediate :
+                        begin
+                            Jump         =   1'b0; 
+                            ALUOp       =   2'b00;
+                            MemWrite    =   1'b0;
+                            RegWrite    =   1'b1;
+                            RegDst      =   1'b0;
+                            ALUSrc      =   1'b1;
+                            MemtoReg    =   1'b0;
+                            Branch      =   1'b0;
+                        end
+                    branchIfEqual :
+                        begin
+                            Jump         =   1'b0; 
+                            ALUOp       =   2'b01;
+                            MemWrite    =   1'b0;
+                            RegWrite    =   1'b0;
+                            RegDst      =   1'b0;
+                            ALUSrc      =   1'b0;
+                            MemtoReg    =   1'b0;
+                            Branch      =   1'b1;
+                        end
+                    jump_inst :
+                        begin
+                            Jump         =   1'b1; 
+                            ALUOp       =   2'b00;
+                            MemWrite    =   1'b0;
+                            RegWrite    =   1'b0;
+                            RegDst      =   1'b0;
+                            ALUSrc      =   1'b0;
+                            MemtoReg    =   1'b0;
+                            Branch      =   1'b0;
+                        end
+                    default : 
+                        begin
+                            Jump         =   1'b0; 
+                            ALUOp       =   2'b00;
+                            MemWrite    =   1'b0;
+                            RegWrite    =   1'b0;
+                            RegDst      =   1'b0;
+                            ALUSrc      =   1'b0;
+                            MemtoReg    =   1'b0;
+                            Branch      =   1'b0;
+                        end  
+                endcase
+            end
+            
         end
     
     always @(*) 

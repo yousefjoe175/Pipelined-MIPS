@@ -107,9 +107,9 @@ wire    [31:0]  PCPlus4D;
 //fetched from the decode execute register
 wire    [31:0]      RD1E;
 wire    [31:0]      RD2E;
-wire    [5:0]       RsE;
-wire    [5:0]       RtE;
-wire    [5:0]       RdE;
+wire    [4:0]       RsE;
+wire    [4:0]       RtE;
+wire    [4:0]       RdE;
 wire    [31:0]      signImmE;
 //coming out of RegDst mux
 wire    [4:0]       WriteRegE;
@@ -320,7 +320,7 @@ MUX3_1 #(.WIDTH(32)) ForwardA_MUX
 .A(RD1E),
 .B(ALUOutM),        //ALUOutM will be declared in the memory stage
 .C(ResultW),        //ResultW will be declared in the write back stage
-.sel(ForwardAD),    //ForwardAD will be declared in the hazard unit        
+.sel(ForwardAE),    //ForwardAD will be declared in the hazard unit        
 .out(SrcAE)
 );
 
@@ -329,7 +329,7 @@ MUX3_1 #(.WIDTH(32)) ForwardB_MUX
 .A(RD2E),
 .B(ALUOutM),        //ALUOutM will be declared in the memory stage
 .C(ResultW),        //ResultW will be declared in the write back stage
-.sel(ForwardBD),    //ForwardBD will be declared in the hazard unit        
+.sel(ForwardBE),    //ForwardBD will be declared in the hazard unit        
 .out(WriteDataE)    
 );
 
