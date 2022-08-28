@@ -19,6 +19,9 @@ module ID_EX_reg (
     input   wire    [ 2:0]  ALUControlD,
     input   wire            ALUSrcD,
     input   wire            RegDstD,
+    input   wire            PushD,
+    input   wire            PopD,
+    input   wire            MemSrcD,
 
     output  reg     [31:0]  RD1E,
     output  reg     [31:0]  RD2E,
@@ -34,7 +37,11 @@ module ID_EX_reg (
     
     output  reg     [ 2:0]  ALUControlE,
     output  reg             ALUSrcE,
-    output  reg             RegDstE
+    output  reg             RegDstE,
+    
+    output  reg             PushE,
+    output  reg             PopE,
+    output  reg             MemSrcE
     
 );
 
@@ -53,12 +60,12 @@ end
 
 always @(posedge CLK, negedge reset ) begin
     if (!reset) begin
-            {RegWriteE,MemtoRegE,MemWriteE,ALUControlE,ALUSrcE,RegDstE} <= 9'b0;
+            {RegWriteE,MemtoRegE,MemWriteE,ALUControlE,ALUSrcE,RegDstE,PushE,PopE,MemSrcE} <= 12'b0;
         end else begin
             if (CLR_sync) begin
-                {RegWriteE,MemtoRegE,MemWriteE,ALUControlE,ALUSrcE,RegDstE} <= 9'b0;    //NOP cause the bubble
+                {RegWriteE,MemtoRegE,MemWriteE,ALUControlE,ALUSrcE,RegDstE,PushE,PopE,MemSrcE} <= 12'b0;    //NOP cause the bubble
             end else begin
-                {RegWriteE,MemtoRegE,MemWriteE,ALUControlE,ALUSrcE,RegDstE} <= {RegWriteD,MemtoRegD,MemWriteD,ALUControlD,ALUSrcD,RegDstD};    
+                {RegWriteE,MemtoRegE,MemWriteE,ALUControlE,ALUSrcE,RegDstE,PushE,PopE,MemSrcE} <= {RegWriteD,MemtoRegD,MemWriteD,ALUControlD,ALUSrcD,RegDstD,PushD,PopD,MemSrcD};    
             end
         end
 end

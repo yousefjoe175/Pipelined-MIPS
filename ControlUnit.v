@@ -3,6 +3,11 @@ module ControlUnit
     input   wire    [31:0]  Instruction,
     input   wire            RST,
 
+    /*Stach signals */
+    output  reg             Push,
+    output  reg             Pop,
+    output  reg             MemSrc,
+/**********************/
     output  reg             RegWrite,
     output  reg             MemtoReg,
     output  reg             MemWrite,
@@ -19,6 +24,8 @@ module ControlUnit
     localparam  addImmediate    = 6'b00_1000;
     localparam  branchIfEqual   = 6'b00_0100;
     localparam  jump_inst       = 6'b00_0010;
+    localparam  pushStack       = 6'b10_0000;
+    localparam  popStack        = 6'b10_1000;
 
     localparam  AND =   6'b10_0100;
     localparam  OR  =   6'b10_0101;
@@ -52,6 +59,9 @@ module ControlUnit
                     ALUSrc      =   1'b0;
                     MemtoReg    =   1'b0;
                     Branch      =   1'b0;
+                    Push        =   1'b0;
+                    Pop         =   1'b0;
+                    MemSrc      =   1'b0;
                 end
             else begin
                 case (OpCode)
@@ -65,10 +75,13 @@ module ControlUnit
                             ALUSrc      =   1'b0;
                             MemtoReg    =   1'b0;
                             Branch      =   1'b0;
+                            Push        =   1'b0;
+                            Pop         =   1'b0;
+                            MemSrc      =   1'b0;
                         end
                     loadWord :
                         begin
-                            Jump         =   1'b0; 
+                            Jump        =   1'b0; 
                             ALUOp       =   2'b00;
                             MemWrite    =   1'b0;
                             RegWrite    =   1'b1;
@@ -76,6 +89,23 @@ module ControlUnit
                             ALUSrc      =   1'b1;
                             MemtoReg    =   1'b1;
                             Branch      =   1'b0;
+                            Push        =   1'b0;
+                            Pop         =   1'b0;
+                            MemSrc      =   1'b1;
+                        end
+                    pushStack:
+                        begin
+                            Jump        =   1'b0; 
+                            ALUOp       =   2'b00;
+                            MemWrite    =   1'b0;
+                            RegWrite    =   1'b1;
+                            RegDst      =   1'b0;
+                            ALUSrc      =   1'b1;
+                            MemtoReg    =   1'b1;
+                            Branch      =   1'b0;
+                            Push        =   1'b1;
+                            Pop         =   1'b0;
+                            MemSrc      =   1'b0;
                         end
                     storeWord :
                         begin
@@ -87,6 +117,23 @@ module ControlUnit
                             ALUSrc      =   1'b1;
                             MemtoReg    =   1'b0;
                             Branch      =   1'b0;
+                            Push        =   1'b0;
+                            Pop         =   1'b0;
+                            MemSrc      =   1'b0;
+                        end
+                    popStack:
+                        begin
+                            Jump         =   1'b0; 
+                            ALUOp       =   2'b00;
+                            MemWrite    =   1'b0;
+                            RegWrite    =   1'b0;
+                            RegDst      =   1'b0;
+                            ALUSrc      =   1'b1;
+                            MemtoReg    =   1'b0;
+                            Branch      =   1'b0;
+                            Push        =   1'b0;
+                            Pop         =   1'b1;
+                            MemSrc      =   1'b0;
                         end
                     addImmediate :
                         begin
@@ -98,6 +145,9 @@ module ControlUnit
                             ALUSrc      =   1'b1;
                             MemtoReg    =   1'b0;
                             Branch      =   1'b0;
+                            Push        =   1'b0;
+                            Pop         =   1'b0;
+                            MemSrc      =   1'b0;
                         end
                     branchIfEqual :
                         begin
@@ -109,6 +159,9 @@ module ControlUnit
                             ALUSrc      =   1'b0;
                             MemtoReg    =   1'b0;
                             Branch      =   1'b1;
+                            Push        =   1'b0;
+                            Pop         =   1'b0;
+                            MemSrc      =   1'b0;
                         end
                     jump_inst :
                         begin
@@ -120,6 +173,9 @@ module ControlUnit
                             ALUSrc      =   1'b0;
                             MemtoReg    =   1'b0;
                             Branch      =   1'b0;
+                            Push        =   1'b0;
+                            Pop         =   1'b0;
+                            MemSrc      =   1'b0;
                         end
                     default : 
                         begin
@@ -131,6 +187,9 @@ module ControlUnit
                             ALUSrc      =   1'b0;
                             MemtoReg    =   1'b0;
                             Branch      =   1'b0;
+                            Push        =   1'b0;
+                            Pop         =   1'b0;
+                            MemSrc      =   1'b0;
                         end  
                 endcase
             end

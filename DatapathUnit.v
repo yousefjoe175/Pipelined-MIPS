@@ -5,7 +5,9 @@ module DatapathUnit (
     /* comes from Instruction memory */
     input   wire    [31:0]      Instr,
     /* comes from Data Memory */
-    input   wire    [31:0]      ReadData,
+    input   wire    [31:0]      MemoryReadData,
+    /* comes from Stack */
+    input   wire    [31:0]      StackReadData,
     /* comes from control unit */
     input   wire                RegWrite,
     input   wire                MemtoReg,
@@ -16,13 +18,21 @@ module DatapathUnit (
     input   wire                Branch,
     input   wire                Jump,
 
+    input   wire                Push,
+    input   wire                Pop,
+    input   wire                MemSrc,
+
+
     output  wire    [31:0]      InstrD,
     output  wire    [31:0]      PC,
     output  wire    [31:0]      ALUOut,
     output  wire    [31:0]      WriteData,
-    output  wire                MemWriteM                 
+    output  wire                MemWriteM,                 
+    output  wire                PushM,
+    output  wire                PopM
 
 );
+
 /* control signals used inside the DU */
 wire                RegWriteD;
 wire                MemtoRegD;
@@ -32,7 +42,9 @@ wire                ALUSrcD;
 wire                RegDstD;
 wire                BranchD;
 wire                JumpD;
-
+wire                PushD;
+wire                PopD;
+wire                MemSrcD;
 /* assigned the control signals to the internal wires */
 assign  RegWriteD       =   RegWrite;
 assign  MemtoRegD       =   MemtoReg;
@@ -42,6 +54,10 @@ assign  ALUSrcD         =   ALUSrc;
 assign  RegDstD         =   RegDst;
 assign  BranchD         =   Branch;
 assign  JumpD           =   Jump;
+assign  PushD           =   Push;
+assign  PopD            =   Pop;
+assign  MemSrcD         =   MemSrc;
+
 
 /* control signals continuing to EXCUTE stage */
 wire    [2:0]       ALUControlE;
@@ -50,10 +66,14 @@ wire                MemtoRegE;
 wire                MemWriteE;
 wire                ALUSrcE;
 wire                RegDstE;
+wire                PushE;
+wire                PopE;
+wire                MemSrcE;
 
 /* control signals continuing to MEMORY stage */
 wire                RegWriteM;
 wire                MemtoRegM;
+wire                MemSrcM;
 //wire                MemWriteM;    we already declared as output port
 
 /* control signals continuing to WRITE BACK stage */
@@ -139,6 +159,7 @@ wire    [31:0]      ALUOutE;
 wire    [31:0]      ALUOutM;
 wire    [31:0]      WriteDataM;
 wire    [4:0]       WriteRegM;
+wire    [31:0]      ReadDataM;   
 
 /**********************************************************************/
 /*
@@ -148,7 +169,7 @@ wire    [4:0]       WriteRegM;
 //signals fetched from memory write back register
 wire    [31:0]  ReadDataW;
 wire    [31:0]  ALUOutW;
-wire    [5:0]   WriteRegW;
+wire    [4:0]   WriteRegW;
 wire    [31:0]  ResultW;
 
 
@@ -330,6 +351,9 @@ ID_EX_reg D_E_reg_mod
 .ALUControlD(ALUControlD),
 .ALUSrcD(ALUSrcD),
 .RegDstD(RegDstD),
+.PushD(PushD),
+.PopD(PopD),
+.MemSrcD(MemSrcD),
 .RD1E(RD1E),
 .RD2E(RD2E),
 .RsE(RsE),
@@ -341,7 +365,10 @@ ID_EX_reg D_E_reg_mod
 .MemWriteE(MemWriteE),
 .ALUControlE(ALUControlE),
 .ALUSrcE(ALUSrcE),
-.RegDstE(RegDstE)
+.RegDstE(RegDstE),
+.PushE(PushE),
+.PopE(PopE),
+.MemSrcE(MemSrcE)
 );
 
 // mux to choose between Rt or Rd as second operand
@@ -402,6 +429,15 @@ assign  WriteData   =   WriteDataM;
 //assign  MemWriteM    =   MemWriteM;   MemWriteM is already define as output
 
 
+MUX #(.WIDTH(32)) MemSrc_mux 
+(
+.In1(StackReadData),
+.In2(MemoryReadData),      
+.sel(MemSrcM),    
+.Out(ReadDataM)      
+);
+
+
 EX_MEM_reg E_M_reg_mod
 (
 .CLK(CLK),
@@ -412,12 +448,18 @@ EX_MEM_reg E_M_reg_mod
 .RegWriteE(RegWriteE),
 .MemtoRegE(MemtoRegE),
 .MemWriteE(MemWriteE),
+.PushE(PushE),
+.PopE(PopE),
+.MemSrcE(MemSrcE),
 .ALUResultM(ALUOutM),
 .WriteDataM(WriteDataM),
 .WriteRegM(WriteRegM),
 .RegWriteM(RegWriteM),
 .MemtoRegM(MemtoRegM),
-.MemWriteM(MemWriteM)
+.MemWriteM(MemWriteM),
+.PushM(PushM),
+.PopM(PopM),
+.MemSrcM(MemSrcM)
 );
 
 /**********************************************************************/
@@ -431,7 +473,7 @@ MEM_WB_reg  M_W_reg_mod
 .CLK(CLK),
 .reset(RST),
 .ALUResultM(ALUOutM),
-.ReadDataM(ReadData),
+.ReadDataM(ReadDataM),
 .WriteRegM(WriteRegM),
 .RegWriteM(RegWriteM),
 .MemtoRegM(MemtoRegM),

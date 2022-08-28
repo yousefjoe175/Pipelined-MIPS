@@ -11,14 +11,23 @@ module EX_MEM_reg (
     input   wire                RegWriteE,
     input   wire                MemtoRegE,    
     input   wire                MemWriteE,
-    
+    input   wire                PushE,
+    input   wire                PopE,
+    input   wire                MemSrcE,
+
+
+
     output  reg     [31:0]      ALUResultM,
     output  reg     [31:0]      WriteDataM,
     output  reg     [ 4:0]      WriteRegM,
     
     output  reg                 RegWriteM,
     output  reg                 MemtoRegM,    
-    output  reg                 MemWriteM
+    output  reg                 MemWriteM,
+
+    output  reg                 PushM,
+    output  reg                 PopM,
+    output  reg                 MemSrcM
     
 );
 
@@ -32,9 +41,9 @@ end
 
 always @(posedge CLK, negedge reset ) begin
     if (!reset) begin
-            {RegWriteM,MemtoRegM,MemWriteM} <= 4'b0;
+            {RegWriteM,MemtoRegM,MemWriteM,PushM,PopM,MemSrcM} <= 7'b0;
         end else begin
-            {RegWriteM,MemtoRegM,MemWriteM} <= {RegWriteE,MemtoRegE,MemWriteE};
+            {RegWriteM,MemtoRegM,MemWriteM,PushM,PopM,MemSrcM} <= {RegWriteE,MemtoRegE,MemWriteE,PushE,PopE,MemSrcE};
         end
 end
 
