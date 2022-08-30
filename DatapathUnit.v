@@ -16,7 +16,13 @@ module DatapathUnit (
     input   wire                ALUSrc,
     input   wire                RegDst,
     input   wire                Branch,
+    input   wire                BranchEq,
+    input   wire                BranchNe,
+    input   wire                BranchLt,
+    input   wire                BranchGt,
     input   wire                Jump,
+    input   wire                Link,
+    input   wire                JumpReg,
 
     input   wire                Push,
     input   wire                Pop,
@@ -41,10 +47,20 @@ wire    [2:0]       ALUControlD;
 wire                ALUSrcD;
 wire                RegDstD;
 wire                BranchD;
+wire                BranchEqD;
+wire                BranchNeD;
+wire                BranchLtD;
+wire                BranchGtD;
 wire                JumpD;
+wire                LinkD;
+wire                JumpRegD;
 wire                PushD;
 wire                PopD;
 wire                MemSrcD;
+wire                PCSrcEqD;
+wire                PCSrcNeD;
+wire                PCSrcLtD;
+wire                PCSrcGtD;
 /* assigned the control signals to the internal wires */
 assign  RegWriteD       =   RegWrite;
 assign  MemtoRegD       =   MemtoReg;
@@ -53,7 +69,13 @@ assign  ALUControlD     =   ALUControl;
 assign  ALUSrcD         =   ALUSrc;
 assign  RegDstD         =   RegDst;
 assign  BranchD         =   Branch;
+assign  BranchEqD       =   BranchEq;
+assign  BranchNeD       =   BranchNe;
+assign  BranchLtD       =   BranchLt;
+assign  BranchGtD       =   BranchGt;
 assign  JumpD           =   Jump;
+assign  LinkD           =   Link;
+assign  JumpRegD        =   JumpReg;
 assign  PushD           =   Push;
 assign  PopD            =   Pop;
 assign  MemSrcD         =   MemSrc;
@@ -90,7 +112,7 @@ wire    [31:0]  PCPlus4F;       //the next addres connected to ADD4
 wire    [31:0]  PCin;           //the input to the Program Counter
                                 //after muxing between next ins or branch
 wire    [31:0]  PCJin;          //the out of PCin and PCJumpD mux
-
+wire    [31:0]  PCJumpLink;
 
 
 /**********************************************************************/
@@ -117,6 +139,9 @@ wire    [31:0]  OP1D;
 wire    [31:0]  OP2D;
 //fetched from CMP 
 wire            EqualD;
+wire            NotEqualD;
+wire            GreatThanD;
+wire            lessThanD;
 
 wire            PCSrcD;
 wire            PCSrcDin;
@@ -125,7 +150,7 @@ wire    [31:0]  PCBranchD;      // the branched address that will be muxed
 wire    [31:0]  PCJumpD;
 //fetched from IF_ID register
 wire    [31:0]  PCPlus4D;
-
+wire    [31:0]  PCLinkD;
 /**********************************************************************/
 /*
 /*                  EXECUTE STAGE signals                     
@@ -223,9 +248,19 @@ MUX #(.WIDTH(32)) Branch_mux
 MUX #(.WIDTH(32)) Jump_mux
 (
 .In1(PCin),
-.In2(PCJumpD),    //PCBranchD will be declared in Decoder stage
+.In2(PCJumpLink),    //PCBranchD will be declared in Decoder stage
 .sel(JumpD),       //PCSrcD will be declared in Decoder stage
 .Out(PCJin)    
+);
+
+/*************************************************/
+/************* link mux ************/
+MUX #(.WIDTH(32)) Link_mux
+(
+.In1(PCJumpD),
+.In2(PCLinkD),
+.sel(JumpRegD),       
+.Out(PCJumpLink)    
 );
 
 /**********************************************************************/
@@ -254,6 +289,18 @@ assign  RdD     =   InstrD[15:11];
 assign  ImmD    =   InstrD[15:0];
 
 assign  PCJumpD = {PCPlus4F[31:28],InstrD[25:0],2'b00};
+
+
+/*******************************************************************/
+/******** link register *******************/
+Register link_reg (
+    .IN(PCPlus4D),
+    .CLK(CLK),
+    .RST(RST),
+    .Enable(LinkD),
+    .OUT(PCLinkD)    
+);
+
 
 SignExtend Sign0 (
     .Inst(ImmD),
@@ -321,11 +368,21 @@ CMP #(.WIDTH(32)) Branch_EQ
 (
 .A(OP1D),
 .B(OP2D),
-.cmp(EqualD)
+.Eq(EqualD),
+.Ne(NotEqualD),
+.Gt(GreatThanD),
+.Lt(lessThanD)
 );
 
-assign PCSrcDin = EqualD & BranchD;
-assign PCSrcD   = PCSrcDin | JumpD;
+
+assign PCSrcD   = PCSrcEqD | PCSrcNeD | PCSrcLtD | PCSrcGtD | JumpD;
+
+
+assign PCSrcEqD = EqualD     & BranchEqD;
+assign PCSrcNeD = NotEqualD  & BranchNeD;
+assign PCSrcLtD = lessThanD  & BranchLtD;
+assign PCSrcGtD = GreatThanD & BranchGtD; 
+
 
 /**********************************************************************/
 /*

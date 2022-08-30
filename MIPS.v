@@ -14,7 +14,13 @@ module MIPS(
     wire            ALUSrc;
     wire            RegDst;
     wire            Branch;
+    wire            BranchEq;
+    wire            BranchNe;
+    wire            BranchLt;
+    wire            BranchGt;
     wire            Jump;
+    wire            Link;
+    wire            JumpReg;
     
     wire            Push;
     wire            Pop;
@@ -46,10 +52,16 @@ module MIPS(
         .ALUSrc(ALUSrc),
         .RegDst(RegDst),
         .Branch(Branch),
+        .BranchEq(BranchEq),
+        .BranchNe(BranchNe),
+        .BranchLt(BranchLt),
+        .BranchGt(BranchGt),
         .Jump(Jump),
         .Push(Push),
         .Pop(Pop),
-        .MemSrc(MemSrc)
+        .MemSrc(MemSrc),
+        .Link(Link),
+        .JumpReg(JumpReg)
     );
 
 
@@ -72,7 +84,13 @@ module MIPS(
         .ALUSrc(ALUSrc),
         .RegDst(RegDst),
         .Branch(Branch),
+        .BranchEq(BranchEq),
+        .BranchNe(BranchNe),
+        .BranchLt(BranchLt),
+        .BranchGt(BranchGt),        
         .Jump(Jump),
+        .Link(Link),
+        .JumpReg(JumpReg),
         .InstrD(InstrD),
         .PC(PC),
         .ALUOut(ALUOut),
@@ -98,33 +116,18 @@ module MIPS(
         .PC(PC)
     );
 
-//module STACK #(
-//    parameter STK_WIDTH = 32, 
-//    parameter PTR_WIDTH = 6
-//) (
-//    input   wire                            CLK     ,
-//    input   wire                            RST     ,
-//    input   wire                            PUSH    ,
-//    input   wire                            POP     ,    
-//    input   wire    [STK_WIDTH - 1 : 0]     Data_in ,
-//    output  wire                            FULL    ,
-//    output  wire                            EMPTY   ,
-//    output  reg     [PTR_WIDTH - 1 : 0]     SP      ,
-//    output  reg     [STK_WIDTH - 1 : 0]     Data_out
-//);
 
-
-STACK STK_WIDTH
-(
-.CLK(CLK)     ,
-.RST(RST)     ,
-.PUSH(PushM)    ,
-.POP(PopM)     ,
-.Data_in(WriteData),
-.FULL(FULL)    ,
-.EMPTY(EMPTY)   ,
-.SP(SP)      ,
-.Data_out(StackReadData)
-);
+    STACK STK_WIDTH
+    (
+        .CLK(CLK)     ,
+        .RST(RST)     ,
+        .PUSH(PushM)    ,
+        .POP(PopM)     ,
+        .Data_in(WriteData),
+        .FULL(FULL)    ,
+        .EMPTY(EMPTY)   ,
+        .SP(SP)      ,
+        .Data_out(StackReadData)
+    );
 
 endmodule
