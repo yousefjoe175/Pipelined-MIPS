@@ -9,35 +9,34 @@ z2
 cModel Technology
 dE:/Courses/Digital/Pipelined MIPS/new MIPS
 vAdder
-Z0 !s110 1661883042
+Z0 !s110 1662541595
 !i10b 1
 !s100 GhBYB]16;bzFkkm:a0Lgz1
-InK9QF06CkoFANH=ijX6iW3
+I@799gRlVnz]DcThl`8lB[2
 Z1 VDg1SIo80bB@j0V0VzS_@n1
 Z2 dE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS
 w1645562520
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Adder.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Adder.v
+8Adder.v
+FAdder.v
 L0 1
 Z3 OV;L;10.5b;63
 r1
 !s85 0
 31
-Z4 !s108 1661883042.000000
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Adder.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Adder.v|
+Z4 !s108 1662541595.000000
+Z5 !s107 top_module.v|STACK.v|SignExtend.v|seg_disp.v|Register_file.v|Register.v|ProgramCounter.v|MUX3_1.v|MUX.v|MIPS.v|MEM_WB_reg.v|Ins_memory.v|IF_ID_reg.v|ID_EX_reg.v|Hazard_Unitv.v|EX_MEM_reg.v|EXC_handler.v|EXC_add.v|EPC_register.v|dig_pointer.v|data_memory.v|DatapathUnit.v|ControlUnit.v|CMP.v|clock_divider.v|CAUSE_reg.v|ALU.v|Adder.v|
+Z6 !s90 Adder.v|ALU.v|CAUSE_reg.v|clock_divider.v|CMP.v|ControlUnit.v|DatapathUnit.v|data_memory.v|dig_pointer.v|EPC_register.v|EXC_add.v|EXC_handler.v|EX_MEM_reg.v|Hazard_Unitv.v|ID_EX_reg.v|IF_ID_reg.v|Ins_memory.v|MEM_WB_reg.v|MIPS.v|MUX.v|MUX3_1.v|ProgramCounter.v|Register.v|Register_file.v|seg_disp.v|SignExtend.v|STACK.v|top_module.v|
 !i113 1
-Z5 o-work work
-Z6 tCvgOpt 0
+Z7 tCvgOpt 0
 n@adder
 vALU
-R0
+!s110 1662544155
 !i10b 1
-!s100 QGifThP<PXj>jUFO99ClC3
-I5F^oW^SERXC8UK3CRV?PJ1
+!s100 da4;kbRVU@TJI3_4>Af_]2
+I1JfB_Lm;`jihGaaMOBQP;1
 R1
 R2
-w1660055513
+w1662543688
 8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ALU.v
 FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ALU.v
 L0 1
@@ -45,489 +44,552 @@ R3
 r1
 !s85 0
 31
-R4
+!s108 1662544155.000000
 !s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ALU.v|
 !s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ALU.v|
 !i113 1
+Z8 o-work work
+R7
+n@a@l@u
+vCAUSE_Reg
+R0
+!i10b 1
+!s100 STjVNg3IOOASo`3>`dD<H1
+IJC5Q:XocC8Be[CCkX<F4f0
+R1
+R2
+w1662487476
+8CAUSE_reg.v
+FCAUSE_reg.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
 R5
 R6
-n@a@l@u
+!i113 1
+R7
+n@c@a@u@s@e_@reg
 vclock_divider
 R0
 !i10b 1
 !s100 g2PJK3bGGQJD>HFaHc6g?3
-Ia4^mW^NY4HQ3j2B_9eZYh1
+IHLPhedJjheG1>iNnmX=2l1
 R1
 R2
-Z7 w1646955154
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/clock_divider.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/clock_divider.v
+Z9 w1646955154
+8clock_divider.v
+Fclock_divider.v
 L0 1
 R3
 r1
 !s85 0
 31
 R4
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/clock_divider.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/clock_divider.v|
-!i113 1
 R5
 R6
+!i113 1
+R7
 vCMP
 R0
 !i10b 1
 !s100 m20E5B1fBBS:D0JTkZ==83
-IBa7CUk1QOmQ[@@8_dizBT2
+Ij]41<d?^lQ`iDIj<E0NhX3
 R1
 R2
 w1661868767
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/CMP.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/CMP.v
+8CMP.v
+FCMP.v
 L0 1
 R3
 r1
 !s85 0
 31
 R4
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/CMP.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/CMP.v|
-!i113 1
 R5
 R6
+!i113 1
+R7
 n@c@m@p
 vControlUnit
 R0
 !i10b 1
-!s100 miYVLN:@bXfPz[8P]kizY1
-I[W2UeO<C4DX?S???d4b0U3
+!s100 jzDT`YY4O8j^KKFn;WDWj3
+IAnL@jbWaCIXJWSnDl[nI12
 R1
 R2
-w1661876009
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ControlUnit.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ControlUnit.v
+w1662541483
+8ControlUnit.v
+FControlUnit.v
 L0 1
 R3
 r1
 !s85 0
 31
 R4
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ControlUnit.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ControlUnit.v|
-!i113 1
 R5
 R6
+!i113 1
+R7
 n@control@unit
 vdata_memory
 R0
 !i10b 1
 !s100 gWZ5NfiKlHCbPdbPhhldK2
-ISZ0iKhUIM73Mo9A23O7FG3
+Ik>l57alCj4_Q_:1O>GeMK1
 R1
 R2
 w1646341619
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/data_memory.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/data_memory.v
+8data_memory.v
+Fdata_memory.v
 L0 1
 R3
 r1
 !s85 0
 31
 R4
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/data_memory.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/data_memory.v|
-!i113 1
 R5
 R6
+!i113 1
+R7
 vDatapathUnit
-!s110 1661883456
+!s110 1662541796
 !i10b 1
-!s100 JM<F4=7W?93625[gSBYK`1
-IO18ac4fn7k1gL8X2LQ5A32
+!s100 h79cg@<1T7o:g[43Rc8>91
+IAXY1ln9bV3IMel]P5>n1g3
 R1
 R2
-w1661883414
-8E:\Courses\Digital\Pipelined MIPS\Pipelined MIPS\DatapathUnit.v
-FE:\Courses\Digital\Pipelined MIPS\Pipelined MIPS\DatapathUnit.v
+w1662541787
+8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/DatapathUnit.v
+FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/DatapathUnit.v
 L0 1
 R3
 r1
 !s85 0
 31
-!s108 1661883456.000000
-!s107 E:\Courses\Digital\Pipelined MIPS\Pipelined MIPS\DatapathUnit.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:\Courses\Digital\Pipelined MIPS\Pipelined MIPS\DatapathUnit.v|
+!s108 1662541796.000000
+!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/DatapathUnit.v|
+!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/DatapathUnit.v|
 !i113 1
-R5
-R6
+R8
+R7
 n@datapath@unit
 vdig_pointer
 R0
 !i10b 1
 !s100 m02dUgFlYQNUozkc5eZF@2
-IO@>2dUF1@6:^^M9kbJ>hB3
+I^7BVAS@z3:PkkZz?<[@F72
 R1
 R2
-R7
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/dig_pointer.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/dig_pointer.v
+R9
+8dig_pointer.v
+Fdig_pointer.v
 L0 1
 R3
 r1
 !s85 0
 31
 R4
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/dig_pointer.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/dig_pointer.v|
-!i113 1
 R5
 R6
+!i113 1
+R7
+vEPC_register
+R0
+!i10b 1
+!s100 GF?3d8A4`1C5O4Tk`aVb?3
+IKRO;SZcXPAjz;@PC^6=nz1
+R1
+R2
+w1662484131
+8EPC_register.v
+FEPC_register.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+n@e@p@c_register
 vEX_MEM_reg
 R0
 !i10b 1
-!s100 I>0_FVR5VQDk^[F2=4ETP1
-IecPU_KlIa;<az6;dWcoMi2
+!s100 lCGBIVV2OG7M;H?lO@VaP0
+Ie3b9l]`2F:EhbnK6Q=DYa0
 R1
 R2
-w1661693979
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/EX_MEM_reg.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/EX_MEM_reg.v
+w1662486203
+8EX_MEM_reg.v
+FEX_MEM_reg.v
 L0 2
 R3
 r1
 !s85 0
 31
 R4
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/EX_MEM_reg.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/EX_MEM_reg.v|
-!i113 1
 R5
 R6
+!i113 1
+R7
 n@e@x_@m@e@m_reg
+vEXC_add
+R0
+!i10b 1
+!s100 CaNooI]J?m=37;Ah4Fi9^3
+I@jeeiE<^D?WBC04N0ggJR0
+R1
+R2
+w1662481014
+8EXC_add.v
+FEXC_add.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+n@e@x@c_add
+vEXC_handler
+R0
+!i10b 1
+!s100 G;b?AYPBE3:]AT>0IA;@H2
+Ihom;ZBLim@i[0ZendR13E0
+R1
+R2
+w1662488050
+8EXC_handler.v
+FEXC_handler.v
+L0 1
+R3
+r1
+!s85 0
+31
+R4
+R5
+R6
+!i113 1
+R7
+n@e@x@c_handler
 vHazard_Unit
 R0
 !i10b 1
 !s100 KY[<nTR_LP67kFXR6`Oz22
-IF`280F;InQPeYSzLg6NNE2
+InB1ab]XDROdZBd@WanBif0
 R1
 R2
 w1660602949
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Hazard_Unitv.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Hazard_Unitv.v
+8Hazard_Unitv.v
+FHazard_Unitv.v
 L0 1
 R3
 r1
 !s85 0
 31
 R4
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Hazard_Unitv.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Hazard_Unitv.v|
-!i113 1
 R5
 R6
+!i113 1
+R7
 n@hazard_@unit
 vID_EX_reg
 R0
 !i10b 1
-!s100 cX:YaPaRfJ=c294Z[P;;C0
-Ih:Ul]ach5Km<hT2JQGRz62
+!s100 11W1COjKc6Bbz^V8Pm^WZ3
+I526`FVnc1^gN4EHFzokb03
 R1
 R2
-w1661693936
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ID_EX_reg.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ID_EX_reg.v
+w1662482343
+8ID_EX_reg.v
+FID_EX_reg.v
 L0 2
 R3
 r1
 !s85 0
 31
 R4
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ID_EX_reg.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ID_EX_reg.v|
-!i113 1
 R5
 R6
+!i113 1
+R7
 n@i@d_@e@x_reg
 vIF_ID_reg
 R0
 !i10b 1
 !s100 9;>TAc47NXfC0eLOe1>WW1
-IBSGPQJ;e9be?ZQCAePQdK3
+ImolSd=SV>d3L`e`XCbF7H0
 R1
 R2
 w1660033228
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/IF_ID_reg.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/IF_ID_reg.v
+8IF_ID_reg.v
+FIF_ID_reg.v
 L0 2
 R3
 r1
 !s85 0
 31
 R4
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/IF_ID_reg.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/IF_ID_reg.v|
-!i113 1
 R5
 R6
+!i113 1
+R7
 n@i@f_@i@d_reg
 vIns_memory
-Z8 !s110 1661883043
+R0
 !i10b 1
 !s100 cP]^DI9SW^D3M:7XVV[=M2
-I;]fLoH:=oCR`Ob>HS?je@0
+I[[L`eJ_768hnG_F?JSHz00
 R1
 R2
 w1659893706
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Ins_memory.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Ins_memory.v
+8Ins_memory.v
+FIns_memory.v
 L0 1
 R3
 r1
 !s85 0
 31
 R4
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Ins_memory.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Ins_memory.v|
-!i113 1
 R5
 R6
+!i113 1
+R7
 n@ins_memory
 vMEM_WB_reg
-R8
+R0
 !i10b 1
 !s100 7[FO?>U7DF7cn08C9I:Sh0
-Ih]KjzWcG3geTmSKYFK6hW1
+IYca_Z>A];T=nCHCJ04Fg92
 R1
 R2
 w1659989105
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/MEM_WB_reg.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/MEM_WB_reg.v
+8MEM_WB_reg.v
+FMEM_WB_reg.v
 L0 2
 R3
 r1
 !s85 0
 31
-Z9 !s108 1661883043.000000
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/MEM_WB_reg.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/MEM_WB_reg.v|
-!i113 1
+R4
 R5
 R6
+!i113 1
+R7
 n@m@e@m_@w@b_reg
 vMIPS
-R8
+R0
 !i10b 1
-!s100 <4ZX`ZghKCQmY[;=eUJ<32
-IXG^ifeEMT]T5^iaecK>F^2
+!s100 koiB^hGh^hLXIMk<JkZgz0
+I4dl03HR346eN5VZJW^0j12
 R1
 R2
-w1661876169
-8E:\Courses\Digital\Pipelined MIPS\Pipelined MIPS\MIPS.v
-FE:\Courses\Digital\Pipelined MIPS\Pipelined MIPS\MIPS.v
+w1662484480
+8MIPS.v
+FMIPS.v
 L0 1
 R3
 r1
 !s85 0
 31
-R9
-!s107 E:\Courses\Digital\Pipelined MIPS\Pipelined MIPS\MIPS.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:\Courses\Digital\Pipelined MIPS\Pipelined MIPS\MIPS.v|
-!i113 1
+R4
 R5
 R6
+!i113 1
+R7
 n@m@i@p@s
 vMUX
-R8
+R0
 !i10b 1
 !s100 cAM`ZbWi3:k?OW3@kB5cA2
-IzGUKXQWh1U:TljZREU?bR2
+I1[mUUA82L7lYcP7LUoQzk1
 R1
 R2
 w1646145750
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/MUX.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/MUX.v
+8MUX.v
+FMUX.v
 L0 1
 R3
 r1
 !s85 0
 31
-R9
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/MUX.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/MUX.v|
-!i113 1
+R4
 R5
 R6
+!i113 1
+R7
 n@m@u@x
 vMUX3_1
-R8
+R0
 !i10b 1
 !s100 7`Q2>iBLIj1;ae4UdMbO=3
-IB:71nJk7joAhhO34>PJQH1
+IDk;73N;WKS`V4:hiNM=7E0
 R1
 R2
 w1660040942
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/MUX3_1.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/MUX3_1.v
+8MUX3_1.v
+FMUX3_1.v
 L0 1
 R3
 r1
 !s85 0
 31
-R9
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/MUX3_1.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/MUX3_1.v|
-!i113 1
+R4
 R5
 R6
+!i113 1
+R7
 n@m@u@x3_1
 vProgramCounter
-R8
+R0
 !i10b 1
 !s100 >G`Wz?G47:Fj]>DUX:5jV3
-ILnM0zXPKNajMKKH=PETJV3
+Icz=W`PNCKm<R8d^cH7dk42
 R1
 R2
 w1660003333
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ProgramCounter.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ProgramCounter.v
+8ProgramCounter.v
+FProgramCounter.v
 L0 1
 R3
 r1
 !s85 0
 31
-R9
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ProgramCounter.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ProgramCounter.v|
-!i113 1
+R4
 R5
 R6
+!i113 1
+R7
 n@program@counter
 vRegister
-R8
+R0
 !i10b 1
 !s100 gdOBeU=UdXO<TECMk6^740
-IFA=a^[G5RSFNZOZ41hJcn1
+Io<3K`dJW]bB`BImKfc@Ea3
 R1
 R2
 w1661855077
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Register.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Register.v
+8Register.v
+FRegister.v
 L0 1
 R3
 r1
 !s85 0
 31
-R9
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Register.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Register.v|
-!i113 1
+R4
 R5
 R6
+!i113 1
+R7
 n@register
 vRegister_file
-R8
+R0
 !i10b 1
 !s100 a0]4g;_g[[og>SK=SdUN30
-Il]9n=UD6h=G`:ZkoQ7z2o3
+I[bd7Z9DT]QCGPaUk1T=aV1
 R1
 R2
 w1646145049
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Register_file.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Register_file.v
+8Register_file.v
+FRegister_file.v
 L0 1
 R3
 r1
 !s85 0
 31
-R9
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Register_file.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Register_file.v|
-!i113 1
+R4
 R5
 R6
+!i113 1
+R7
 n@register_file
 vseg_disp
-R8
+R0
 !i10b 1
 !s100 0ZeKW`3OzidFBS9a`eOPJ2
-I5I7Ak:MY]<n@HoI9b9FnL0
+I:f9Jb2^NekWN_Tl@BjaD03
 R1
 R2
-R7
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/seg_disp.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/seg_disp.v
+R9
+8seg_disp.v
+Fseg_disp.v
 L0 1
 R3
 r1
 !s85 0
 31
-R9
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/seg_disp.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/seg_disp.v|
-!i113 1
+R4
 R5
 R6
+!i113 1
+R7
 vSignExtend
-R8
+R0
 !i10b 1
 !s100 Pc9Y2oSPPdITEjL;@Kf0C2
-IOlKH_U[2TTCN]MGBnLmSP2
+I6Gd?fGMNRZJ90b;;aVN4J0
 R1
 R2
 w1645562513
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/SignExtend.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/SignExtend.v
+8SignExtend.v
+FSignExtend.v
 L0 1
 R3
 r1
 !s85 0
 31
-R9
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/SignExtend.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/SignExtend.v|
-!i113 1
+R4
 R5
 R6
+!i113 1
+R7
 n@sign@extend
 vSTACK
-R8
+R0
 !i10b 1
 !s100 5XE`3dX;NFcCcV?dlzoZk0
-I@_dCRjib=bY>697lNR:jV3
+IaKef[IhB8fK9[I4Bn22T30
 R1
 R2
 w1661695643
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/STACK.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/STACK.v
+8STACK.v
+FSTACK.v
 L0 1
 R3
 r1
 !s85 0
 31
-R9
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/STACK.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/STACK.v|
-!i113 1
+R4
 R5
 R6
+!i113 1
+R7
 n@s@t@a@c@k
 vtop_module
 R0
 !i10b 1
 !s100 J2B_7U<QgJ2dIm92@0SV]1
-IHCLbKlK?G`5LAP;3l1=890
+Iff>l7TFb6F=o4;cEgUd;D1
 R1
 R2
-R7
-8E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/top_module.v
-FE:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/top_module.v
+R9
+8top_module.v
+Ftop_module.v
 L0 1
 R3
 r1
 !s85 0
 31
 R4
-!s107 E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/top_module.v|
-!s90 -reportprogress|300|-work|work|-stats=none|E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/top_module.v|
-!i113 1
 R5
 R6
+!i113 1
+R7

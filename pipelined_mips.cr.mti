@@ -12,13 +12,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	Ins_memory
 
-} {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ALU.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ALU.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module ALU
-
-Top level modules:
-	ALU
-
 } {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/data_memory.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/data_memory.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module data_memory
@@ -40,6 +33,13 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	dig_pointer
 
+} {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/EXC_handler.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/EXC_handler.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module EXC_handler
+
+Top level modules:
+	EXC_handler
+
 } {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/seg_disp.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/seg_disp.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module seg_disp
@@ -47,12 +47,26 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	seg_disp
 
+} {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/DatapathUnit.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/DatapathUnit.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module DatapathUnit
+
+Top level modules:
+	DatapathUnit
+
 } {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Hazard_Unitv.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Hazard_Unitv.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module Hazard_Unit
 
 Top level modules:
 	Hazard_Unit
+
+} {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Adder.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Adder.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module Adder
+
+Top level modules:
+	Adder
 
 } {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/CMP.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/CMP.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -67,13 +81,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 
 Top level modules:
 	ProgramCounter
-
-} {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Adder.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/Adder.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module Adder
-
-Top level modules:
-	Adder
 
 } {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/clock_divider.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/clock_divider.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -103,13 +110,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	Register
 
-} {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ID_EX_reg.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ID_EX_reg.v}
-Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module ID_EX_reg
-
-Top level modules:
-	ID_EX_reg
-
 } {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/STACK.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/STACK.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
 -- Compiling module STACK
@@ -117,12 +117,19 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	STACK
 
-} {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/EX_MEM_reg.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/EX_MEM_reg.v}
+} {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ID_EX_reg.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/ID_EX_reg.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module EX_MEM_reg
+-- Compiling module ID_EX_reg
 
 Top level modules:
-	EX_MEM_reg
+	ID_EX_reg
+
+} {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/CAUSE_reg.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/CAUSE_reg.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module CAUSE_Reg
+
+Top level modules:
+	CAUSE_Reg
 
 } {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/top_module.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/top_module.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -138,12 +145,19 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 Top level modules:
 	IF_ID_reg
 
-} {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/MIPS.v} {1 {vlog -work work -stats=none {E:\Courses\Digital\Pipelined MIPS\Pipelined MIPS\MIPS.v}
+} {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/EX_MEM_reg.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/EX_MEM_reg.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
--- Compiling module MIPS
+-- Compiling module EX_MEM_reg
 
 Top level modules:
-	MIPS
+	EX_MEM_reg
+
+} {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/EXC_add.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/EXC_add.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module EXC_add
+
+Top level modules:
+	EXC_add
 
 } {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/SignExtend.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/SignExtend.v}
 Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
@@ -158,5 +172,12 @@ Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  
 
 Top level modules:
 	ControlUnit
+
+} {} {}} {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/MIPS.v} {1 {vlog -work work -stats=none {E:/Courses/Digital/Pipelined MIPS/Pipelined MIPS/MIPS.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module MIPS
+
+Top level modules:
+	MIPS
 
 } {} {}}

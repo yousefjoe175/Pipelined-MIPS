@@ -21,6 +21,7 @@ module MIPS(
     wire            Jump;
     wire            Link;
     wire            JumpReg;
+    wire            EPCReg;
     
     wire            Push;
     wire            Pop;
@@ -61,7 +62,8 @@ module MIPS(
         .Pop(Pop),
         .MemSrc(MemSrc),
         .Link(Link),
-        .JumpReg(JumpReg)
+        .JumpReg(JumpReg),
+        .EPCReg(EPCReg)
     );
 
 
@@ -91,6 +93,7 @@ module MIPS(
         .Jump(Jump),
         .Link(Link),
         .JumpReg(JumpReg),
+        .EPCReg(EPCReg),
         .InstrD(InstrD),
         .PC(PC),
         .ALUOut(ALUOut),

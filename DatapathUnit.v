@@ -23,6 +23,7 @@ module DatapathUnit (
     input   wire                Jump,
     input   wire                Link,
     input   wire                JumpReg,
+    input   wire                EPCReg,
 
     input   wire                Push,
     input   wire                Pop,
@@ -54,6 +55,7 @@ wire                BranchGtD;
 wire                JumpD;
 wire                LinkD;
 wire                JumpRegD;
+wire                EPCRegD;
 wire                PushD;
 wire                PopD;
 wire                MemSrcD;
@@ -76,6 +78,7 @@ assign  BranchGtD       =   BranchGt;
 assign  JumpD           =   Jump;
 assign  LinkD           =   Link;
 assign  JumpRegD        =   JumpReg;
+assign  EPCRegD         =   EPCReg;
 assign  PushD           =   Push;
 assign  PopD            =   Pop;
 assign  MemSrcD         =   MemSrc;
@@ -101,6 +104,27 @@ wire                MemSrcM;
 /* control signals continuing to WRITE BACK stage */
 wire                RegWriteW;
 wire                MemtoRegW;
+
+/**********************************************************************/
+/*
+/*                  Exception Handler signals                     
+/*
+/**********************************************************************/
+wire    [31:0]  EPC;
+wire    [31:0]  CAUSE;
+wire    [31:0]  CAUSE_in;
+wire    [31:0]  EXC_Sel;
+wire    [31:0]  PC_EXC;
+wire    [31:0]  EXC_Address;
+wire    [31:0]  PCMin4;
+wire    [31:0]  PCPlus4E;
+wire            EXC_FlushM;
+wire            EXC_FlushE;
+wire            EXC_FlushD;
+wire            UND;
+wire            EPCEnable;
+wire            PCXmux;
+
 
 /**********************************************************************/
 /*
@@ -151,6 +175,8 @@ wire    [31:0]  PCJumpD;
 //fetched from IF_ID register
 wire    [31:0]  PCPlus4D;
 wire    [31:0]  PCLinkD;
+wire    [31:0]  PCLinkEPCD;
+
 /**********************************************************************/
 /*
 /*                  EXECUTE STAGE signals                     
@@ -174,6 +200,8 @@ wire    [31:0]      SrcBE;
 wire    [31:0]      SrcAE;
 //coming from ALU
 wire    [31:0]      ALUOutE;
+wire                OVFE;
+
 
 /**********************************************************************/
 /*
@@ -210,9 +238,9 @@ wire            ForwardBD;
 wire            ForwardAWD; //used for RD1D
 wire            ForwardBWD;            
 
-wire            FlushE;
-wire            StallD;
-wire            StallF;
+wire            HAZ_FlushE;
+wire            HAZ_StallD;
+wire            HAZ_StallF;
 
 /**********************************************************************/
 /*
@@ -226,7 +254,7 @@ ProgramCounter PC_reg
 .CLK(CLK),
 .reset(RST),
 .Enable(StallF),
-.PC_in(PCJin),
+.PC_in(PC_EXC),
 .PC(PCF)   
 );
 
@@ -248,8 +276,8 @@ MUX #(.WIDTH(32)) Branch_mux
 MUX #(.WIDTH(32)) Jump_mux
 (
 .In1(PCin),
-.In2(PCJumpLink),    //PCBranchD will be declared in Decoder stage
-.sel(JumpD),       //PCSrcD will be declared in Decoder stage
+.In2(PCJumpLink),    
+.sel(JumpD),       
 .Out(PCJin)    
 );
 
@@ -258,9 +286,29 @@ MUX #(.WIDTH(32)) Jump_mux
 MUX #(.WIDTH(32)) Link_mux
 (
 .In1(PCJumpD),
-.In2(PCLinkD),
+.In2(PCLinkEPCD),
 .sel(JumpRegD),       
 .Out(PCJumpLink)    
+);
+
+
+/*************************************************/
+/************* EPC mux ************/
+MUX #(.WIDTH(32)) EPC_mux
+(
+.In1(PCLinkD),
+.In2(EPC),
+.sel(EPCRegD),       
+.Out(PCLinkEPCD)    
+);
+
+
+MUX #(.WIDTH(32)) Handler_mux
+(
+.In1(PCJin),
+.In2(EXC_Address),    
+.sel(PCXmux),       
+.Out(PC_EXC)    
 );
 
 /**********************************************************************/
@@ -275,7 +323,7 @@ IF_ID_reg F_D_reg_mod
 (
 .CLK(CLK),
 .reset(RST),
-.CLR_sync(PCSrcD),  
+.CLR_sync(FlushD),  
 .Enable(StallD),
 .InstrF(Instr),
 .PCPlus4F(PCPlus4F),
@@ -376,7 +424,7 @@ CMP #(.WIDTH(32)) Branch_EQ
 
 
 assign PCSrcD   = PCSrcEqD | PCSrcNeD | PCSrcLtD | PCSrcGtD | JumpD;
-
+assign FlushD   = PCSrcD | EXC_FlushD;
 
 assign PCSrcEqD = EqualD     & BranchEqD;
 assign PCSrcNeD = NotEqualD  & BranchNeD;
@@ -390,6 +438,7 @@ assign PCSrcGtD = GreatThanD & BranchGtD;
 /*
 /**********************************************************************/
 
+assign FlushE = EXC_FlushE | HAZ_FlushE;
 
 ID_EX_reg D_E_reg_mod
 (
@@ -402,6 +451,7 @@ ID_EX_reg D_E_reg_mod
 .RtD(RtD),
 .RdD(RdD),
 .ImmD(SignImmD),
+.PCPlus4D(PCPlus4D),
 .RegWriteD(RegWriteD),
 .MemtoRegD(MemtoRegD),
 .MemWriteD(MemWriteD),
@@ -417,6 +467,7 @@ ID_EX_reg D_E_reg_mod
 .RtE(RtE),
 .RdE(RdE),
 .ImmE(signImmE),
+.PCPlus4E(PCPlus4E),
 .RegWriteE(RegWriteE),
 .MemtoRegE(MemtoRegE),
 .MemWriteE(MemWriteE),
@@ -471,7 +522,8 @@ ALU ALU_mod
 .SrcA(SrcAE),
 .SrcB(SrcBE),
 .ALUControl(ALUControlE),
-.ALUResult(ALUOutE)
+.ALUResult(ALUOutE),
+.OVF(OVFE)
 );
 
 /**********************************************************************/
@@ -499,6 +551,7 @@ EX_MEM_reg E_M_reg_mod
 (
 .CLK(CLK),
 .reset(RST),
+.CLR_sync(FlushM),
 .ALUResultE(ALUOutE),
 .WriteDataE(WriteDataE),
 .WriteRegE(WriteRegE),
@@ -572,7 +625,7 @@ Hazard_Unit H0
 .MemtoRegM(MemtoRegM),
 .RsD(RsD),
 .RtD(RtD),
-.FlushE(FlushE),
+.FlushE(HAZ_FlushE),
 .StallD(StallD),
 .StallF(StallF),
 .WriteRegE(WriteRegE),
@@ -582,6 +635,57 @@ Hazard_Unit H0
 .RegDstD(RegDstD),
 .ForwardAWD(ForwardAWD),
 .ForwardBWD(ForwardBWD)
+);
+
+
+/**********************************************************************/
+/*
+/*                  Exception Handler unit Block            
+/*
+/**********************************************************************/
+
+
+EXC_handler EXC
+(
+.OVF(OVFE),
+.UND(UND),
+.EPCEnable,
+.FlushM(EXC_FlushM),
+.FlushE(EXC_FlushE),
+.FlushD(EXC_FlushD),
+.PCXmux(PCXmux),
+.CAUSE(CAUSE_in)
+);
+
+
+
+CAUSE_Reg cs_reg
+(
+.CLK(CLK),
+.RST(RST),
+.EXC(CAUSE_in),
+.CAUSE(CAUSE)
+);
+
+EPC_register EPC_reg
+(
+.CLK(CLK),
+.RST(RST),
+.Enable(EPCEnable),
+.PC(PCMin4),
+.EPC(EPC)
+);
+
+EXC_add EXC_ad
+(
+.Address(EXC_Address)
+);
+
+Adder Pcminus4
+(
+.A(PCPlus4E),
+.B(32'hfffffffc),
+.C(PCMin4) 
 );
 
 

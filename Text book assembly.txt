@@ -1,0 +1,48 @@
+# 		Assembly  						Description				Address 		Machine
+main: 	addi $2, $0, 5 					# initialize $2 = 5 		0 			20020005
+		addi $3, $0, 12 					# initialize $3 = 12 		4 			2003000c
+		addi $7, $3, −9 					# initialize $7 = 3 		8 			2067fff7
+
+		lui $6, 32768					# initialize $6 = 0x8000	c 			24068000
+
+		or  $4, $7, $2 					# $4 = (3 OR 5) = 7 		10 			00e22025
+		and $5, $3, $4 					# $5 = (12 AND 7) = 4 		14 			00642824
+		add $5, $5, $4 					# $5 = 4 + 7 = 11 		18 			00a42820					
+		pop $2						# $2 = 5				1c			a0020000
+
+		beq $5, $7, end 					# shouldn't be taken 		20 			10a7000a
+		slt $4, $3, $4 					# $4 = 12 < 7 = 0 		24 			0064202a
+
+		psh $10											28			800a0000
+
+		beq $4, $0, around 				# should be taken 		2c 			10800001
+		addi $5, $0, 0 					# shouldn’t happen 		30 			20050000
+around: 	slt $4, $7, $2 					# $4 = 3 < 5 = 1 			34 			00e2202a
+		add $7, $4, $5 					# $7 = 1 + 11 = 12 		38 			00853820
+		sub $7, $7, $2 					# $7 = 12 − 5 = 7 		3c 			00e23822
+		sw $7, 68($3) 					# [80] = 7 				40 			ac670044
+		lw $2, 80($0) 					# $2 = [80] = 7 			44 			8c020050
+		
+		add $6, $6, $6										48			00c63020
+
+		jal func											4c			0c000016
+
+		j end 						# should be taken 		50 			08000013
+		addi $2, $0, 1 					# shouldn't happen 		54 			20020001
+end: 		sw $2, 84($0) 					# write mem[84] = 7 		58 			ac020054
+		j exit											5c			0800001a
+func:		addi $15, $0, 9					# $15 = 9				60			200f0009
+		jr							# back to instr (50)		64			04000000
+branch:	addi $4,$4, 5										68			20840005
+		bgt $4,$7, less										6c			1c870001
+exit:		bne $4,$7, branch 									70			1487fffd	
+less:		blt $0,$4, branch										74			1804fffc
+														78			00000000
+														7c			00000000
+														80			00000000
+														84			00000000
+handler:	addi $6, $0, 1										88			20060001
+		jepc 							# back to instr (48)		8c			44000000
+						
+																
+

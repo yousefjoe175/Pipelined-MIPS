@@ -1,0 +1,33 @@
+# vsim work.MIPS 
+# Start time: 11:06:52 on Sep 07,2022
+# Loading work.MIPS
+# Loading work.ControlUnit
+# Loading work.DatapathUnit
+# Loading work.ProgramCounter
+# Loading work.Adder
+# Loading work.MUX
+# Loading work.IF_ID_reg
+# Loading work.Register
+# Loading work.SignExtend
+# Loading work.Register_file
+# Loading work.CMP
+# Loading work.ID_EX_reg
+# Loading work.MUX3_1
+# Loading work.ALU
+# Loading work.EX_MEM_reg
+# Loading work.MEM_WB_reg
+# Loading work.Hazard_Unit
+# Loading work.EXC_handler
+# Loading work.CAUSE_Reg
+# Loading work.EPC_register
+# Loading work.EXC_add
+# Loading work.data_memory
+# Loading work.Ins_memory
+# Loading work.STACK
+# ** Error: (vsim-3063) DatapathUnit.v(684): Port 'c' not found in the connected module (3rd connection).
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS/D1/Pcminus4 File: Adder.v
+# ** Warning: (vsim-3015) MIPS.v(106): [PCDPC] - Port size (32) does not match connection size (1) for port 'RD'. The port definition is at: data_memory.v(7).
+#    Time: 0 ps  Iteration: 0  Instance: /MIPS/M1 File: data_memory.v
+# Error loading design
+# End time: 11:06:52 on Sep 07,2022, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 1

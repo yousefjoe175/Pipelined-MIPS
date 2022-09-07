@@ -10,6 +10,7 @@ module ID_EX_reg (
     input   wire    [ 4:0]  RtD,
     input   wire    [ 4:0]  RdD,
     input   wire    [31:0]  ImmD,
+    input   wire    [31:0]  PCPlus4D,
     
 
     input   wire            RegWriteD,    
@@ -29,6 +30,7 @@ module ID_EX_reg (
     output  reg     [ 4:0]  RtE,
     output  reg     [ 4:0]  RdE,
     output  reg     [31:0]  ImmE,
+    output  reg     [31:0]  PCPlus4E,
     
 
     output  reg             RegWriteE,  
@@ -47,12 +49,12 @@ module ID_EX_reg (
 
 always @(posedge CLK, negedge reset ) begin
     if (!reset) begin
-            {RD1E,RD2E,RsE,RtE,RdE,ImmE} <= 138'b0;
+            {RD1E,RD2E,RsE,RtE,RdE,ImmE,PCPlus4E} <= 138'b0;
         end else begin
             if (CLR_sync) begin
-                {RD1E,RD2E,RsE,RtE,RdE,ImmE} <= 138'b0;
+                {RD1E,RD2E,RsE,RtE,RdE,ImmE,PCPlus4E} <= 138'b0;
             end else begin
-                {RD1E,RD2E,RsE,RtE,RdE,ImmE} <= {RD1D,RD2D,RsD,RtD,RdD,ImmD};    
+                {RD1E,RD2E,RsE,RtE,RdE,ImmE,PCPlus4E} <= {RD1D,RD2D,RsD,RtD,RdD,ImmD,PCPlus4D};    
             end
             
         end

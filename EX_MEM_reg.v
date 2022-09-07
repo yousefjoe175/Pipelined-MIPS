@@ -2,6 +2,7 @@
 module EX_MEM_reg (
     input   wire                CLK,
     input   wire                reset,
+    input   wire                CLR_sync,
     
     input   wire    [31:0]      ALUResultE,
     input   wire    [31:0]      WriteDataE,
@@ -35,7 +36,11 @@ always @(posedge CLK, negedge reset ) begin
     if (!reset) begin
             {ALUResultM,WriteDataM,WriteRegM} <= 102'b0;
         end else begin
-            {ALUResultM,WriteDataM,WriteRegM} <= {ALUResultE,WriteDataE,WriteRegE};
+            if (CLR_sync) begin
+                {ALUResultM,WriteDataM,WriteRegM} <= 102'b0;
+            end else begin
+                {ALUResultM,WriteDataM,WriteRegM} <= {ALUResultE,WriteDataE,WriteRegE}; 
+            end
         end
 end
 
@@ -43,7 +48,11 @@ always @(posedge CLK, negedge reset ) begin
     if (!reset) begin
             {RegWriteM,MemtoRegM,MemWriteM,PushM,PopM,MemSrcM} <= 7'b0;
         end else begin
-            {RegWriteM,MemtoRegM,MemWriteM,PushM,PopM,MemSrcM} <= {RegWriteE,MemtoRegE,MemWriteE,PushE,PopE,MemSrcE};
+            if (CLR_sync) begin
+                {RegWriteM,MemtoRegM,MemWriteM,PushM,PopM,MemSrcM} <= 7'b0;
+            end else begin
+                {RegWriteM,MemtoRegM,MemWriteM,PushM,PopM,MemSrcM} <= {RegWriteE,MemtoRegE,MemWriteE,PushE,PopE,MemSrcE};    
+            end
         end
 end
 
